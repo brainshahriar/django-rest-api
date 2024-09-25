@@ -1,0 +1,12 @@
+.btn-primary {
+    margin-top: 20px;
+}
+.form-check{
+    margin-top: 10px;
+}
+.contact-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}

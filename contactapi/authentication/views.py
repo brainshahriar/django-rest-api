@@ -7,6 +7,9 @@ from django.conf import settings
 from django.contrib import auth
 import jwt
 import datetime
+from rest_framework import permissions
+from django.contrib.auth import logout
+from .models import BlacklistedToken
 # Create your views here.
 
 
@@ -49,3 +52,18 @@ class LoginView(GenericAPIView):
             return Response(data, status=status.HTTP_200_OK)
 
         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+class LogoutView(GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        # Get the token from the Authorization header
+        token = request.headers.get('Authorization').split(' ')[1]
+
+        # Blacklist the token
+        BlacklistedToken.objects.create(token=token)
+
+        # Logout the user
+        logout(request)
+        return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
+

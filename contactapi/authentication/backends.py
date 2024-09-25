@@ -3,6 +3,7 @@ import jwt
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
+from .models import BlacklistedToken
 
 class JWTAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
@@ -18,6 +19,10 @@ class JWTAuthentication(authentication.BaseAuthentication):
 
         if prefix.lower() != 'bearer':
             raise AuthenticationFailed('Authorization header must start with "Bearer".')
+
+        # Check if token is blacklisted
+        if BlacklistedToken.objects.filter(token=token).exists():
+            raise AuthenticationFailed('This token has been blacklisted, please log in again.')
 
         try:
             # Ensure the secret key is passed as a string

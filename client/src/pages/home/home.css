@@ -1,0 +1,16 @@
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+.container {
+  margin-top: 20px;
+  width: 100%;
+}
+.add-btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+table {
+  margin-top: 20px;
+}
