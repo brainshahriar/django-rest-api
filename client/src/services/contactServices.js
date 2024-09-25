@@ -1,9 +1,15 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 
-export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+let BACKEND_URL;
 
-// All category
+try {
+  BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  await axios.get(BACKEND_URL);
+} catch (error) {
+  BACKEND_URL = "https://django-rest-api-roo0.onrender.com";
+}
+
+// All contacts
 
 const allContacts = async () => {
   const token = localStorage.getItem("token");
@@ -16,7 +22,7 @@ const allContacts = async () => {
   return response.data;
 };
 
-// Create a new category
+// Create a new contact
 
 const createContact = async (formData) => {
   const token = localStorage.getItem("token");
@@ -33,7 +39,7 @@ const createContact = async (formData) => {
   return response.data;
 };
 
-// Get a category
+// Get a contact
 const getContact = async (id) => {
   const token = localStorage.getItem("token");
   const config = {
@@ -41,33 +47,40 @@ const getContact = async (id) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(`${BACKEND_URL}/api/contacts/${id}`,config);
+  const response = await axios.get(`${BACKEND_URL}/api/contacts/${id}`, config);
   return response.data;
 };
 
-// Delete a category
+// Delete a contact
 
 const deleteContact = async (id) => {
   const token = localStorage.getItem("token");
   const config = {
-    headers:{
+    headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   };
-  const response = await axios.delete(`${BACKEND_URL}/api/contacts/${id}/`,config);
+  const response = await axios.delete(
+    `${BACKEND_URL}/api/contacts/${id}/`,
+    config
+  );
   return response.data;
 };
 
-// Update a category
+// Update a contact
 
-const updateContact = async (id,formData) => {
+const updateContact = async (id, formData) => {
   const token = localStorage.getItem("token");
   const config = {
-    headers:{
+    headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   };
-  const response = await axios.patch(`${BACKEND_URL}/api/contacts/${id}/`,formData,config);
+  const response = await axios.patch(
+    `${BACKEND_URL}/api/contacts/${id}/`,
+    formData,
+    config
+  );
   return response.data;
 };
 
@@ -76,7 +89,7 @@ const contactServices = {
   createContact,
   getContact,
   deleteContact,
-  updateContact
+  updateContact,
 };
 
 export default contactServices;

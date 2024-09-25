@@ -41,4 +41,4 @@ class ContactDetailView(RetrieveUpdateDestroyAPIView):
     parser_classes = (MultiPartParser, FormParser)  # Add this to handle file uploads
 
     def get_queryset(self):
-        return Contact.objects.filter(owner=self.request.user)
+        return Contact.objects.all()
