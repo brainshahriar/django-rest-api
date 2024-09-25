@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +27,7 @@ SECRET_KEY = 'django-insecure-1-ko+0$-+(tm*77nfdylyr@@mnjgn+!upu*t_2@=x-18x(yj*&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-]
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -141,7 +140,7 @@ USE_I18N = True
 USE_TZ = True
 
 # JWT Settings
-JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'JWT_SECRET_KEY')
+JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 
 
 # Static files (CSS, JavaScript, Images)
