@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,7 +139,7 @@ USE_I18N = True
 USE_TZ = True
 
 # JWT Settings
-JWT_SECRET_KEY = config('JWT_SECRET_KEY')
+JWT_SECRET_KEY = 'JWT_SECRET_KasdasdEY'
 
 
 # Static files (CSS, JavaScript, Images)
