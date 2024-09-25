@@ -8,6 +8,7 @@ django = "*"
 pyjwt = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
+pillow = "*"
 
 [dev-packages]
 
