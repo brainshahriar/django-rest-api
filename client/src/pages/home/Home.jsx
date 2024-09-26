@@ -19,7 +19,6 @@ export default function Home() {
     (state) => state.contact
   );
 
-  const [contactList, setContactList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [searchTerm, setSearchTerm] = useState(""); // For search input
@@ -39,8 +38,6 @@ export default function Home() {
 
   useEffect(() => {
     if (contacts.length > 0) {
-      const initialContacts = contacts.slice(0, ITEMS_PER_PAGE);
-      setContactList(initialContacts);
       setHasMore(contacts.length > ITEMS_PER_PAGE);
     }
   }, [contacts]);
@@ -65,7 +62,7 @@ export default function Home() {
     if (moreContacts.length === 0) {
       setHasMore(false);
     } else {
-      setContactList((prevContacts) => [...prevContacts, ...moreContacts]);
+      setFilteredContacts((prevContacts) => [...prevContacts, ...moreContacts]);
       setPage(page + 1);
     }
   };
@@ -75,7 +72,7 @@ export default function Home() {
     toast.success("Contact deleted successfully");
     dispatch(getAllContact());
     setPage(1);
-    setContactList([]);
+    setFilteredContacts([]);
     setHasMore(true);
   };
 
