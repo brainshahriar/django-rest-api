@@ -2,12 +2,7 @@ import axios from "axios";
 
 let BACKEND_URL;
 
-try {
-  BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-  await axios.get(BACKEND_URL);
-} catch (error) {
-  BACKEND_URL = "https://django-rest-api-roo0.onrender.com";
-}
+BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
 // All contacts
 
@@ -22,7 +17,7 @@ const allContacts = async () => {
   return response.data;
 };
 
-// Create a new contact
+// Create a new category
 
 const createContact = async (formData) => {
   const token = localStorage.getItem("token");
@@ -39,7 +34,7 @@ const createContact = async (formData) => {
   return response.data;
 };
 
-// Get a contact
+// Get a category
 const getContact = async (id) => {
   const token = localStorage.getItem("token");
   const config = {
@@ -51,7 +46,7 @@ const getContact = async (id) => {
   return response.data;
 };
 
-// Delete a contact
+// Delete a category
 
 const deleteContact = async (id) => {
   const token = localStorage.getItem("token");
@@ -67,7 +62,7 @@ const deleteContact = async (id) => {
   return response.data;
 };
 
-// Update a contact
+// Update a category
 
 const updateContact = async (id, formData) => {
   const token = localStorage.getItem("token");
