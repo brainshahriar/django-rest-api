@@ -13,7 +13,7 @@ import { loginUser } from "../../services/authServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SET_LOGIN, SET_NAME, SET_EMAIL, selectIsLoggedIn } from "../../redux/features/auth/authSlice";
-import Loader, { SpinnerImg } from '../../components/loader/Loader'
+import Loader from '../../components/loader/Loader'
 import { useEffect } from "react";
 
 const initialState = {
