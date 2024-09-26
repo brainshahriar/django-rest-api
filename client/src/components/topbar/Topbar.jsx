@@ -1,14 +1,9 @@
 import React from "react";
 import "./topbar.css";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import LanguageIcon from "@mui/icons-material/Language";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/authServices";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_LOGIN, SET_NAME, SET_EMAIL } from "../../redux/features/auth/authSlice";
-import { selectName } from "../../redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN } from "../../redux/features/auth/authSlice";
 
 export default function Topbar() {
 
@@ -48,9 +43,9 @@ export default function Topbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-disabled="true" onClick={handleLogout}>
+                <Link className="nav-link" to="#" aria-disabled="true" onClick={handleLogout}>
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

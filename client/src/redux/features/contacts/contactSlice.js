@@ -9,6 +9,8 @@ const initialState = {
   errorMessages: [],
   message: [],
 };
+
+
 // get all contacts
 
 export const getAllContact = createAsyncThunk(
